@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 
 // 1. Найти самого младшего ученика из классов, содержащих "2"
 $queryYoungestFirstGrader = "
-    SELECT surname, name, patronymic, birthday 
+    SELECT surname, name, patronymic, DATE_FORMAT(birthday, '%d.%m.%Y') AS birthday 
     FROM Student 
     WHERE id IN (
         SELECT studentId 
@@ -18,7 +18,7 @@ $queryYoungestFirstGrader = "
             SELECT id FROM Class WHERE name LIKE '%1%'
         )
     )
-    ORDER BY birthday DESC 
+    ORDER BY birthday ASC 
     LIMIT 1
 ";
 $stmt = $pdo->query($queryYoungestFirstGrader);

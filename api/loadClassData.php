@@ -10,7 +10,7 @@ if ($classId <= 0) {
 }
 
 // Получаем учеников
-$query = 'SELECT student.id, student.surname, student.name, student.patronymic, student.birthday
+$query = 'SELECT student.id, student.surname, student.name, student.patronymic, DATE_FORMAT(student.birthday, "%d.%m.%Y") AS birthday
           FROM Student student
           JOIN ClassList class ON student.id = class.studentId
           WHERE class.classId = :classId';
